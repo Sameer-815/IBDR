@@ -4,7 +4,9 @@
 Accurate segmentation of pathological tissue is essential for characterizing the tumor microenvironment, thereby enabling precise treatment planning and prognostic assessment. However, weakly supervised methods based on image-level labels and class activation maps (CAMs) often suffer from boundary imprecision due to over- or under-activation, particularly in the presence of inter-class homogeneity and intra-class heterogeneity. To address these challenges, we propose an Implicit Boundary Mining (IBM) module that enhances subtle edge cues embedded in deep features to facilitate boundary localization under image-level supervision. To further suppress pseudo-label noise, we introduce a Dual Path Refinement (DPR) architecture guided by an Intra-Inter Class Consistency with Boundary Awareness (IICB) loss. DPR simultaneously predicts tissue regions and refines boundaries via context-aware attention, while IICB promotes semantic consistency and enhances boundary precision. Extensive experiments on three tumor datasets (two public and one in-house) and a public gland dataset demonstrate that our method achieves state-of-the-art performance among weakly supervised approaches. Moreover, few-shot domain adaptation results highlight its strong generalization capability with minimal retraining, underscoring its practical value in real-world clinical applications.
 </details>
 
+# Framework
 
+![framework](framework.png)
 
 # Usage
 
