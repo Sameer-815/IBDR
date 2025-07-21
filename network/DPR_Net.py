@@ -3,9 +3,9 @@ import torch.nn as nn
 import torch
 import torch.nn.functional as F
 
-class SCFM(nn.Module):
+class HDFM(nn.Module):
     def __init__(self, channels, reduction_ratio=16):
-        super(SCFM, self).__init__()
+        super(HDFM, self).__init__()
         mid_channels = max(1, channels // reduction_ratio)
         self.channel_attention = nn.Sequential(
             nn.AdaptiveAvgPool2d(1),
@@ -56,14 +56,14 @@ class Net(nn.Module):
             in_channels=in_channels,
             classes=classes
         )
-        self.scfm = SCFM(channels=classes)
+        self.hdfm = HDFM(channels=classes)
         self.aux_head = AuxiliaryHead(in_channels=512, num_classes=classes)
         
     def forward(self, x, return_features=False):
         features = self.PSPNet.encoder(x)
         aux_out = self.aux_head(features[-1])
         main_out = self.PSPNet(x)
-        main_out = self.scfm(main_out)
+        main_out = self.hdfm(main_out)
         if return_features:
             return main_out, aux_out, features[-1]
         return main_out, aux_out
